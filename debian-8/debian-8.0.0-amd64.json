@@ -1,8 +1,11 @@
 {
+    "variables": {
+        "debian_version": "8.0.0"
+    },
     "builders": [
         {
             "type": "virtualbox-iso",
-            "iso_url": "http://cdimage.debian.org/cdimage/release/current/amd64/iso-cd/debian-8.0.0-amd64-netinst.iso",
+            "iso_url": "http://cdimage.debian.org/cdimage/release/current/amd64/iso-cd/debian-{{user `debian_version`}}-amd64-netinst.iso",
             "iso_checksum_type": "md5",
             "iso_checksum": "d9209f355449fe13db3963571b1f52d4",
             "ssh_username": "vagrant",
@@ -12,7 +15,7 @@
             "boot_command": [
                 "<esc><wait>",
                 "auto",
-                " url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg",
+                " url=http://{{.HTTPIP}}:{{.HTTPPort}}/preseed.cfg",
                 "<enter>"
             ],
             "guest_os_type": "Debian_64",
@@ -24,9 +27,11 @@
             "type": "shell",
             "only": ["virtualbox-iso"],
             "scripts": [
+                "scripts/base.sh",
                 "scripts/vagrant.sh",
                 "scripts/sshd.sh",
-                "scripts/virtualbox.sh"
+                "scripts/virtualbox.sh",
+                "scripts/cleanup.sh"
             ]
         }
     ],
@@ -34,7 +39,7 @@
         {
             "type": "vagrant",
             "only": ["virtualbox-iso"],
-            "output": "debian-8.0.0-amd64_{{.BuildName}}_{{.Provider}}.box"
+            "output": "debian-{{user `debian_version`}}-amd64_{{.BuildName}}_{{.Provider}}.box"
         }
     ]
 }
