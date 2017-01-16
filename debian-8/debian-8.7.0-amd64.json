@@ -1,13 +1,13 @@
 {
     "variables": {
-        "debian_version": "8.6.0"
+        "debian_version": "8.7.0"
     },
     "builders": [
         {
             "type": "virtualbox-iso",
             "iso_url": "http://cdimage.debian.org/cdimage/release/current/amd64/iso-cd/debian-{{user `debian_version`}}-amd64-netinst.iso",
             "iso_checksum_type": "sha256",
-            "iso_checksum": "9479c5c2df72ae3878116c43fb42eefae53d1fe363ce514a6afc8289064b9f5f",
+            "iso_checksum": "5a618df1be71e13c26611ff35b39d3b5f38644c445a4d849760420ccfb734d8e",
             "ssh_username": "vagrant",
             "ssh_password": "vagrant",
             "ssh_wait_timeout": "60m",
