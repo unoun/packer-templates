@@ -12,5 +12,5 @@ debian-9
 --------
 
     cd debian-9
-    packer build debian-9.1.0-amd64.json
-    vagrant box add debian-9.1.0-amd64_virtualbox-iso_virtualbox.box --name local/debian-9.1.0-amd64
+    packer build debian-9.2.0-amd64.json
+    vagrant box add debian-9.2.0-amd64_virtualbox-iso_virtualbox.box --name local/debian-9.2.0-amd64
